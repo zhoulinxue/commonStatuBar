@@ -9,7 +9,13 @@ import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
-
+/**
+ * Copyright (C), 2015-2020
+ * FileName: InputHelper
+ * Author: zx
+ * Date: 2020/5/29 16:40
+ * Description:
+ */
 public class InputHelper {
 
 

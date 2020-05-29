@@ -7,7 +7,13 @@ import android.view.View
 import android.view.WindowManager
 import androidx.annotation.ColorInt
 import androidx.annotation.FloatRange
-
+/**
+ * Copyright (C), 2015-2020
+ * FileName: StatusParams
+ * Author: zx
+ * Date: 2020/5/29 16:40
+ * Description:
+ */
 class StatusParams {
 
     var navigationBarView //4.4自定义一个导航栏

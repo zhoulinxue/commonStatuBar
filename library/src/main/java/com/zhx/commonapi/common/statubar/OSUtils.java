@@ -6,10 +6,11 @@ import android.text.TextUtils;
 import java.lang.reflect.Method;
 
 /**
- * 手机系统判断
- *
- * @author geyifeng
- * @date 2017/4/18
+ * Copyright (C), 2015-2020
+ * FileName: OSUtils
+ * Author: zx
+ * Date: 2020/5/29 16:40
+ * Description:
  */
 public class OSUtils {
 

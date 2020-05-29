@@ -22,7 +22,13 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * Copyright (C), 2015-2020
+ * FileName: CommonStatusBar
+ * Author: zx
+ * Date: 2020/5/29 16:40
+ * Description:
+ */
 public class CommonStatusBar {
 
     private static Map<String, StatusParams> mMap = new HashMap<>();

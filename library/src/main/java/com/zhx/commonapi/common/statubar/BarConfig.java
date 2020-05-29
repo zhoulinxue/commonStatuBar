@@ -11,7 +11,13 @@ import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Display;
 import android.view.WindowManager;
-
+/**
+ * Copyright (C), 2015-2020
+ * FileName: BarConfig
+ * Author: zx
+ * Date: 2020/5/29 16:40
+ * Description:
+ */
 public class BarConfig {
 
     private static final String STATUS_BAR_HEIGHT_RES_NAME = "status_bar_height";

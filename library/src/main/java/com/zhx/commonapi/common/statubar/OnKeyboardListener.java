@@ -1,5 +1,11 @@
 package com.zhx.commonapi.common.statubar;
-
+/**
+ * Copyright (C), 2015-2020
+ * FileName: OnKeyboardListener
+ * Author: zx
+ * Date: 2020/5/29 16:40
+ * Description:
+ */
 public interface OnKeyboardListener {
     /**
      * On keyboard change.
