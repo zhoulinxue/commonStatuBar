@@ -26,7 +26,6 @@ public class BarConfig {
     private static final String NAV_BAR_WIDTH_RES_NAME = "navigation_bar_width";
 
     private final int mStatusBarHeight;
-    private final int mActionBarHeight;
     private final boolean mHasNavigationBar;
     private final int mNavigationBarHeight;
     private final int mNavigationBarWidth;
@@ -39,7 +38,6 @@ public class BarConfig {
         mInPortrait = (res.getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT);
         mSmallestWidthDp = getSmallestWidthDp(activity);
         mStatusBarHeight = getInternalDimensionSize(res, STATUS_BAR_HEIGHT_RES_NAME);
-        mActionBarHeight = getActionBarHeight(activity);
         mNavigationBarHeight = getNavigationBarHeight(activity);
         mNavigationBarWidth = getNavigationBarWidth(activity);
         mHasNavigationBar = (mNavigationBarHeight > 0);
@@ -154,15 +152,6 @@ public class BarConfig {
      */
     public int getStatusBarHeight() {
         return mStatusBarHeight;
-    }
-
-    /**
-     * Get the height of the action bar.
-     *
-     * @return The height of the action bar (in pixels).
-     */
-    public int getActionBarHeight() {
-        return mActionBarHeight;
     }
 
     /**

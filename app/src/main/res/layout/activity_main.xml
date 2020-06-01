@@ -16,7 +16,6 @@
             android:id="@+id/tanchuang_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:text="弹窗" />
 
         <EditText

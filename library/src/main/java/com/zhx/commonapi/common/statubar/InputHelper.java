@@ -34,7 +34,6 @@ public class InputHelper {
 
     private int keyboardHeightPrevious;
     private int statusBarHeight;
-    private int actionBarHeight;
     private int navigationBarHeight;
     private boolean navigationAtBottom;
 
@@ -77,7 +76,6 @@ public class InputHelper {
         BarConfig barConfig = new BarConfig(mActivity);
         this.statusBarHeight = barConfig.getStatusBarHeight();
         this.navigationBarHeight = barConfig.getNavigationBarHeight();
-        this.actionBarHeight = barConfig.getActionBarHeight();
         navigationAtBottom = barConfig.isNavigationAtBottom();
 
     }

@@ -1,6 +1,7 @@
 package com.zhx.commonapi.common.statubar
 
 import android.app.Activity
+
 /**
  * Copyright (C), 2015-2020
  * FileName: BarFactory
@@ -13,11 +14,14 @@ class BarFactory {
 
     companion object staticFun {
         fun createStatusBar(activity: Activity): CommonStatusBar {
-//            val tag: String = getTag(activity)
-            return CommonStatusBar(activity);
+            val tag: String = getTag(activity)
+            return CommonStatusBar(activity,tag);
         }
 
-        fun getTag(activity: Activity): String {
+        private fun getTag(activity: Activity): String {
+            if (activity != null) {
+                return activity.javaClass.simpleName
+            }
             return System.identityHashCode(activity).toString();
         }
     }

@@ -22,6 +22,9 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import kotlin.jvm.Throws;
+
 /**
  * Copyright (C), 2015-2020
  * FileName: CommonStatusBar
@@ -32,9 +35,6 @@ import java.util.Map;
 public class CommonStatusBar {
 
     private static Map<String, StatusParams> mMap = new HashMap<>();
-    private static Map<String, StatusParams> mTagMap = new HashMap<>();
-    private static Map<String, ArrayList<String>> mTagKeyMap = new HashMap<>();
-
     private Activity mActivity;
     /**
      * 用户配置的bar参数
@@ -47,11 +47,10 @@ public class CommonStatusBar {
     private ViewGroup mContentView;
 
     private String barTag;
-    private String mActivityName;
-    private String mFragmentName;
 
-    public CommonStatusBar(Activity mActivity) {
+    public CommonStatusBar(Activity mActivity, String barTag) {
         this.mActivity = mActivity;
+        this.barTag = barTag;
         initCommonParameter(mActivity.getWindow());
     }
 
@@ -68,8 +67,11 @@ public class CommonStatusBar {
     }
 
     public static CommonStatusBar acticity(Activity activity) {
+        if (activity == null) {
+            throw new NullPointerException("activity can not be null...");
+        }
         CommonStatusBar bar = BarFactory.staticFun.createStatusBar(activity);
-        bar.initParams();
+        bar.fitKeyBoard().initParams();
         bar.keyboardEnable();
         return bar;
     }
@@ -84,16 +86,6 @@ public class CommonStatusBar {
         mConfig = new BarConfig(mActivity);
         if (mMap.get(barTag) == null) {
             mBarParams = new StatusParams();
-            if (!TextUtils.isEmpty(mFragmentName)) { //保证一个activity页面有同一个状态栏view和导航栏view
-                if (mMap.get(mActivityName) == null)
-                    throw new IllegalArgumentException("在Fragment里使用时，请先在加载Fragment的Activity里初始化！！！");
-                if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT
-                        || OSUtils.isEMUI3_1()) {
-                    mBarParams.setStatusBarView(mMap.get(mActivityName).getStatusBarView());
-                    mBarParams.setNavigationBarView(mMap.get(mActivityName).getNavigationBarView());
-                }
-                mBarParams.setKeyboardPatch(mMap.get(mActivityName).getKeyboardPatch());
-            }
             mMap.put(barTag, mBarParams);
         } else {
             mBarParams = mMap.get(barTag);
