@@ -63,8 +63,9 @@ public class CommonStatusBar {
 
     public static CommonStatusBar acticity(Activity activity) {
         CommonStatusBar bar = BarFactory.staticFun.createStatusBar(activity);
-        bar.initParams();
         bar.keyboardEnable();
+        bar.initParams();
+        bar.fitKeyBoard();
         return bar;
     }
 
@@ -94,16 +95,26 @@ public class CommonStatusBar {
         }
     }
 
-    public CommonStatusBar isBlackText(boolean isblack) {
+    public CommonStatusBar whiteText() {
+        textColor(false);
+        return this;
+    }
+
+    public CommonStatusBar blackText() {
+        textColor(true);
+        return this;
+    }
+
+    private void textColor(boolean isblack) {
         mBarParams.setBalckText(isblack);
-        if (!isblack)
+        if (!isblack) {
             mBarParams.setFlymeOSTextColor(0);
+        }
         if (Util.isSupportChangeTextColor()) {
             mBarParams.setStatusBarAlpha(0);
         } else {
             mBarParams.setStatusBarAlpha(0.2f);
         }
-        return this;
     }
 
     /**
@@ -116,7 +127,7 @@ public class CommonStatusBar {
         return this;
     }
 
-    public void start() {
+    public void set() {
         init();   //初始化沉浸式
         keyboardEnable();  //解决软键盘与底部输入框冲突问题
         registerEMUI3_x();  //解决华为emui3.1或者3.0导航栏手动隐藏的问题

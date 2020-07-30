@@ -13,6 +13,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        CommonStatusBar.acticity(this).isBlackText(true).start()
+        CommonStatusBar.acticity(this).whiteText().set()
     }
 }
