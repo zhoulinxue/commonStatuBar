@@ -17,6 +17,8 @@ import android.widget.FrameLayout;
 import androidx.annotation.RequiresApi;
 import androidx.core.graphics.ColorUtils;
 
+import com.zhx.commonapi.common.statubar.BarFactory;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -63,9 +65,8 @@ public class CommonStatusBar {
 
     public static CommonStatusBar acticity(Activity activity) {
         CommonStatusBar bar = BarFactory.staticFun.createStatusBar(activity);
-        bar.keyboardEnable();
         bar.initParams();
-        bar.fitKeyBoard();
+        bar.keyboardEnable();
         return bar;
     }
 
