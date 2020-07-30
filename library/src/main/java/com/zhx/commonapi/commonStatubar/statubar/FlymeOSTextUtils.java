@@ -9,7 +9,13 @@ import android.view.WindowManager;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-
+/**
+ * Copyright (C), 2015-2020
+ * FileName: FlymeOSTextUtils
+ * Author: zx
+ * Date: 2020/5/29 16:40
+ * Description:
+ */
 public class FlymeOSTextUtils {
     private static Method mSetStatusBarColorIcon;
     private static Method mSetStatusBarDarkIcon;

@@ -9,7 +9,13 @@ import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
-
+/**
+ * Copyright (C), 2015-2020
+ * FileName: InputHelper
+ * Author: zx
+ * Date: 2020/5/29 16:40
+ * Description:
+ */
 public class InputHelper {
 
 
@@ -28,7 +34,6 @@ public class InputHelper {
 
     private int keyboardHeightPrevious;
     private int statusBarHeight;
-    private int actionBarHeight;
     private int navigationBarHeight;
     private boolean navigationAtBottom;
 
@@ -71,7 +76,6 @@ public class InputHelper {
         BarConfig barConfig = new BarConfig(mActivity);
         this.statusBarHeight = barConfig.getStatusBarHeight();
         this.navigationBarHeight = barConfig.getNavigationBarHeight();
-        this.actionBarHeight = barConfig.getActionBarHeight();
         navigationAtBottom = barConfig.isNavigationAtBottom();
 
     }
