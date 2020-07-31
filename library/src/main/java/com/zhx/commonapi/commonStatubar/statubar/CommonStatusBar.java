@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.provider.Settings;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CommonStatusBar {
+    private String TAG = CommonStatusBar.class.getSimpleName();
 
     private static Map<String, StatusParams> mMap = new HashMap<>();
     private static Map<String, StatusParams> mTagMap = new HashMap<>();
@@ -66,7 +68,7 @@ public class CommonStatusBar {
     public static CommonStatusBar acticity(Activity activity) {
         CommonStatusBar bar = BarFactory.staticFun.createStatusBar(activity);
         bar.initParams();
-        bar.keyboardEnable();
+        bar.fitKeyBoard();
         return bar;
     }
 
@@ -80,6 +82,7 @@ public class CommonStatusBar {
         mConfig = new BarConfig(mActivity);
         if (mMap.get(barTag) == null) {
             mBarParams = new StatusParams();
+            Log.i(TAG, mFragmentName + "!!!" + mActivityName);
             if (!TextUtils.isEmpty(mFragmentName)) { //保证一个activity页面有同一个状态栏view和导航栏view
                 if (mMap.get(mActivityName) == null)
                     throw new IllegalArgumentException("请先在加载Fragment的Activity里初始化！！！");
@@ -365,4 +368,13 @@ public class CommonStatusBar {
         mDecorView.addView(mBarParams.getStatusBarView());
     }
 
+    public void destroy() {
+//        if (mBarParams.getKeyboardPatch() != null) {
+//            mBarParams.getKeyboardPatch().disable(mBarParams.getKeyboardMode());  //取消监听
+//            mBarParams.setKeyboardPatch(null);
+//        }
+//        if (mWindow != null) {
+//            mWindow = null;
+//        }
+    }
 }
