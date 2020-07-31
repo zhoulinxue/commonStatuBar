@@ -19,4 +19,10 @@ public class WhiteStatusTextActivity extends AppCompatActivity {
         super.onResume();
         CommonStatusBar.acticity(this).whiteText().set();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        CommonStatusBar.acticity(this).destroy();
+    }
 }

@@ -19,4 +19,9 @@ public class BlackStatusTextActivity extends AppCompatActivity {
         super.onResume();
         CommonStatusBar.acticity(this).blackText().set();
     }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        CommonStatusBar.acticity(this).destroy();
+    }
 }

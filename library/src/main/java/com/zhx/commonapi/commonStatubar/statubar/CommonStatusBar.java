@@ -1,6 +1,7 @@
 package com.zhx.commonapi.commonStatubar.statubar;
 
 import android.app.Activity;
+import android.app.Application;
 import android.database.ContentObserver;
 import android.graphics.Color;
 import android.os.Build;
@@ -43,8 +44,6 @@ public class CommonStatusBar {
     private ViewGroup mContentView;
 
     private String barTag;
-    private String mActivityName;
-    private String mFragmentName;
 
     public CommonStatusBar(Activity mActivity) {
         this.mActivity = mActivity;
@@ -66,7 +65,7 @@ public class CommonStatusBar {
     public static CommonStatusBar acticity(Activity activity) {
         CommonStatusBar bar = BarFactory.staticFun.createStatusBar(activity);
         bar.initParams();
-        bar.keyboardEnable();
+        bar.fitKeyBoard();
         return bar;
     }
 
@@ -80,16 +79,6 @@ public class CommonStatusBar {
         mConfig = new BarConfig(mActivity);
         if (mMap.get(barTag) == null) {
             mBarParams = new StatusParams();
-            if (!TextUtils.isEmpty(mFragmentName)) { //保证一个activity页面有同一个状态栏view和导航栏view
-                if (mMap.get(mActivityName) == null)
-                    throw new IllegalArgumentException("请先在加载Fragment的Activity里初始化！！！");
-                if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT
-                        || OSUtils.isEMUI3_1()) {
-                    mBarParams.setStatusBarView(mMap.get(mActivityName).getStatusBarView());
-                    mBarParams.setNavigationBarView(mMap.get(mActivityName).getNavigationBarView());
-                }
-                mBarParams.setKeyboardPatch(mMap.get(mActivityName).getKeyboardPatch());
-            }
             mMap.put(barTag, mBarParams);
         } else {
             mBarParams = mMap.get(barTag);
@@ -363,6 +352,16 @@ public class CommonStatusBar {
         if (viewGroup != null)
             viewGroup.removeView(mBarParams.getStatusBarView());
         mDecorView.addView(mBarParams.getStatusBarView());
+    }
+
+    public void destroy() {
+        if (mBarParams.getKeyboardPatch() != null) {
+            mBarParams.getKeyboardPatch().disable();  //取消监听
+            mBarParams.setKeyboardPatch(null);
+        }
+        if (mWindow != null) {
+            mWindow = null;
+        }
     }
 
 }

@@ -17,4 +17,8 @@ class FragmentTestActivity : AppCompatActivity() {
         super.onResume()
         CommonStatusBar.acticity(this).whiteText().set()
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        CommonStatusBar.acticity(this).destroy()
+    }
 }

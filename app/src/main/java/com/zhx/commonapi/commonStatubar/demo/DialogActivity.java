@@ -25,9 +25,16 @@ public class DialogActivity extends AppCompatActivity {
             }
         });
     }
+
     @Override
     protected void onResume() {
         super.onResume();
         CommonStatusBar.acticity(this).blackText().set();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        CommonStatusBar.acticity(this).destroy();
     }
 }
