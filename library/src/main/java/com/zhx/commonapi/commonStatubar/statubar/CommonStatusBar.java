@@ -27,12 +27,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CommonStatusBar {
-    private String TAG = CommonStatusBar.class.getSimpleName();
-
-    private static Map<String, StatusParams> mMap = new HashMap<>();
-    private static Map<String, StatusParams> mTagMap = new HashMap<>();
-    private static Map<String, ArrayList<String>> mTagKeyMap = new HashMap<>();
-
     private Activity mActivity;
     /**
      * 用户配置的bar参数
@@ -43,10 +37,6 @@ public class CommonStatusBar {
     private Window mWindow;
     private ViewGroup mDecorView;
     private ViewGroup mContentView;
-
-    private String barTag;
-    private String mActivityName;
-    private String mFragmentName;
 
     public CommonStatusBar(Activity mActivity) {
         this.mActivity = mActivity;
@@ -63,13 +53,11 @@ public class CommonStatusBar {
         mBarParams = new StatusParams();
         mDecorView = (ViewGroup) mWindow.getDecorView();
         mContentView = mDecorView.findViewById(android.R.id.content);
+        initParams();
     }
 
     public static CommonStatusBar acticity(Activity activity) {
-        CommonStatusBar bar = BarFactory.staticFun.createStatusBar(activity);
-        bar.initParams();
-        bar.fitKeyBoard();
-        return bar;
+        return BarFactory.staticFun.createStatusBar(activity);
     }
 
     /**
@@ -80,23 +68,7 @@ public class CommonStatusBar {
         mDecorView = (ViewGroup) mWindow.getDecorView();
         mContentView = mDecorView.findViewById(android.R.id.content);
         mConfig = new BarConfig(mActivity);
-        if (mMap.get(barTag) == null) {
-            mBarParams = new StatusParams();
-            Log.i(TAG, mFragmentName + "!!!" + mActivityName);
-            if (!TextUtils.isEmpty(mFragmentName)) { //保证一个activity页面有同一个状态栏view和导航栏view
-                if (mMap.get(mActivityName) == null)
-                    throw new IllegalArgumentException("请先在加载Fragment的Activity里初始化！！！");
-                if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT
-                        || OSUtils.isEMUI3_1()) {
-                    mBarParams.setStatusBarView(mMap.get(mActivityName).getStatusBarView());
-                    mBarParams.setNavigationBarView(mMap.get(mActivityName).getNavigationBarView());
-                }
-                mBarParams.setKeyboardPatch(mMap.get(mActivityName).getKeyboardPatch());
-            }
-            mMap.put(barTag, mBarParams);
-        } else {
-            mBarParams = mMap.get(barTag);
-        }
+        mBarParams = new StatusParams();
     }
 
     public CommonStatusBar whiteText() {
@@ -124,7 +96,7 @@ public class CommonStatusBar {
     /**
      * 解决软键盘与底部输入框冲突问题 ，默认是true
      */
-    private CommonStatusBar fitKeyBoard() {
+    public CommonStatusBar bottomInput() {
         mBarParams.setKeyboardEnable(true);
         mBarParams.setKeyboardMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN
                 | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
@@ -366,15 +338,5 @@ public class CommonStatusBar {
         if (viewGroup != null)
             viewGroup.removeView(mBarParams.getStatusBarView());
         mDecorView.addView(mBarParams.getStatusBarView());
-    }
-
-    public void destroy() {
-//        if (mBarParams.getKeyboardPatch() != null) {
-//            mBarParams.getKeyboardPatch().disable(mBarParams.getKeyboardMode());  //取消监听
-//            mBarParams.setKeyboardPatch(null);
-//        }
-//        if (mWindow != null) {
-//            mWindow = null;
-//        }
     }
 }

@@ -17,6 +17,6 @@ public class BottomInputActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        CommonStatusBar.acticity(this).blackText().set();
+        CommonStatusBar.acticity(this).blackText().bottomInput().set();
     }
 }
