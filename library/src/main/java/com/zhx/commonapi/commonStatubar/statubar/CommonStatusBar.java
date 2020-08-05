@@ -116,7 +116,7 @@ public class CommonStatusBar {
      * Register emui 3 x.
      */
     private void registerEMUI3_x() {
-        if ((OSUtils.isEMUI3_1() || OSUtils.isEMUI3_0()) && mConfig.hasNavigtionBar()
+        if (OSUtils.isEMUI3_x() && mConfig.hasNavigtionBar()
                 && mBarParams.getNavigationBarEnable() && mBarParams.getNavigationBarWithKitkatEnable()) {
             if (mBarParams.getNavigationStatusObserver() == null && mBarParams.getNavigationBarView() != null) {
                 mBarParams.setNavigationStatusObserver(new ContentObserver(new Handler()) {
