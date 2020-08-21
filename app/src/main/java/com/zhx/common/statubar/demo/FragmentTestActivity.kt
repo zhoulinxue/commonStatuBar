@@ -1,8 +1,7 @@
-package org.zhx.common.statubar.demo
+package com.zhx.common.statubar.demo
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.zhx.common.statubar.demo.R
 import org.zhx.common.statubar.CommonStatusBar
 
 class FragmentTestActivity : AppCompatActivity() {
@@ -20,9 +19,5 @@ class FragmentTestActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         CommonStatusBar.acticity(this).whiteText().set()
-    }
-    override fun onDestroy() {
-        super.onDestroy()
-        CommonStatusBar.acticity(this).destroy()
     }
 }

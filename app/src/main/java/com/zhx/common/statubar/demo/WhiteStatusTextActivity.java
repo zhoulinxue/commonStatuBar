@@ -1,4 +1,4 @@
-package org.zhx.common.statubar.demo;
+package com.zhx.common.statubar.demo;
 
 import android.os.Bundle;
 
@@ -9,7 +9,7 @@ import com.zhx.common.statubar.demo.R;
 
 import org.zhx.common.statubar.CommonStatusBar;
 
-public class BlackStatusTextActivity extends AppCompatActivity {
+public class WhiteStatusTextActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,11 +19,7 @@ public class BlackStatusTextActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        CommonStatusBar.acticity(this).blackText().set();
+        CommonStatusBar.acticity(this).whiteText().set();
     }
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        CommonStatusBar.acticity(this).destroy();
-    }
+
 }

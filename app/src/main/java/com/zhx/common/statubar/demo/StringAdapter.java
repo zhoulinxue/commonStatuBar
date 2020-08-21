@@ -1,4 +1,4 @@
-package org.zhx.common.statubar.demo;
+package com.zhx.common.statubar.demo;
 
 import androidx.annotation.Nullable;
 

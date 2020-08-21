@@ -1,4 +1,4 @@
-package org.zhx.common.statubar.demo;
+package com.zhx.common.statubar.demo;
 
 import android.os.Bundle;
 
@@ -9,21 +9,16 @@ import com.zhx.common.statubar.demo.R;
 
 import org.zhx.common.statubar.CommonStatusBar;
 
-public class BottomInputActivity extends AppCompatActivity {
+public class BlackStatusTextActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.edite_layout);
+        setContentView(R.layout.fragment_layout);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        CommonStatusBar.acticity(this).blackText().bottomInput().set();
-    }
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        CommonStatusBar.acticity(this).destroy();
+        CommonStatusBar.acticity(this).blackText().set();
     }
 }

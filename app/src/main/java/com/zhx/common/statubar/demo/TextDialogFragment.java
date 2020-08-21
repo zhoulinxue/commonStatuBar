@@ -1,4 +1,4 @@
-package org.zhx.common.statubar.demo;
+package com.zhx.common.statubar.demo;
 
 import android.app.Dialog;
 import android.graphics.drawable.ColorDrawable;

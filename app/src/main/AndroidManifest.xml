@@ -9,18 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.zhx.common.statubar.demo.org.zhx.common.statubar.demo.ListActivity">
+        <activity android:name=".ListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.zhx.common.statubar.demo.org.zhx.common.statubar.demo.BlackStatusTextActivity" />
-        <activity android:name="com.zhx.common.statubar.demo.org.zhx.common.statubar.demo.FragmentTestActivity" />
-        <activity android:name="com.zhx.common.statubar.demo.org.zhx.common.statubar.demo.WhiteStatusTextActivity" />
-        <activity android:name="com.zhx.common.statubar.demo.org.zhx.common.statubar.demo.BottomInputActivity" />
-        <activity android:name="com.zhx.common.statubar.demo.org.zhx.common.statubar.demo.DialogActivity" />
+        <activity android:name=".BlackStatusTextActivity" />
+        <activity android:name=".FragmentTestActivity" />
+        <activity android:name=".WhiteStatusTextActivity" />
+        <activity android:name=".BottomInputActivity" />
+        <activity android:name=".DialogActivity" />
     </application>
 
 </manifest>

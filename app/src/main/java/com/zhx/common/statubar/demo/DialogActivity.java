@@ -1,4 +1,4 @@
-package org.zhx.common.statubar.demo;
+package com.zhx.common.statubar.demo;
 
 import android.os.Bundle;
 import android.view.View;
@@ -33,9 +33,4 @@ public class DialogActivity extends AppCompatActivity {
         CommonStatusBar.acticity(this).blackText().set();
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        CommonStatusBar.acticity(this).destroy();
-    }
 }
