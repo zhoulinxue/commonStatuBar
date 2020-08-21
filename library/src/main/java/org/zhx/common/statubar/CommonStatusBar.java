@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Handler;
 import android.provider.Settings;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,11 +27,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CommonStatusBar {
-
-    private static Map<String, StatusParams> mMap = new HashMap<>();
-    private static Map<String, StatusParams> mTagMap = new HashMap<>();
-    private static Map<String, ArrayList<String>> mTagKeyMap = new HashMap<>();
-
     private Activity mActivity;
     /**
      * 用户配置的bar参数
@@ -58,13 +55,11 @@ public class CommonStatusBar {
         mBarParams = new StatusParams();
         mDecorView = (ViewGroup) mWindow.getDecorView();
         mContentView = mDecorView.findViewById(android.R.id.content);
+        initParams();
     }
 
     public static CommonStatusBar acticity(Activity activity) {
-        CommonStatusBar bar = BarFactory.staticFun.createStatusBar(activity);
-        bar.initParams();
-        bar.fitKeyBoard();
-        return bar;
+        return BarFactory.staticFun.createStatusBar(activity);
     }
 
     /**
@@ -75,12 +70,7 @@ public class CommonStatusBar {
         mDecorView = (ViewGroup) mWindow.getDecorView();
         mContentView = mDecorView.findViewById(android.R.id.content);
         mConfig = new BarConfig(mActivity);
-        if (mMap.get(barTag) == null) {
-            mBarParams = new StatusParams();
-            mMap.put(barTag, mBarParams);
-        } else {
-            mBarParams = mMap.get(barTag);
-        }
+        mBarParams = new StatusParams();
     }
 
     public CommonStatusBar whiteText() {
@@ -108,7 +98,7 @@ public class CommonStatusBar {
     /**
      * 解决软键盘与底部输入框冲突问题 ，默认是true
      */
-    private CommonStatusBar fitKeyBoard() {
+    public CommonStatusBar bottomInput() {
         mBarParams.setKeyboardEnable(true);
         mBarParams.setKeyboardMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN
                 | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
@@ -128,7 +118,7 @@ public class CommonStatusBar {
      * Register emui 3 x.
      */
     private void registerEMUI3_x() {
-        if ((OSUtils.isEMUI3_1() || OSUtils.isEMUI3_0()) && mConfig.hasNavigtionBar()
+        if (OSUtils.isEMUI3_x() && mConfig.hasNavigtionBar()
                 && mBarParams.getNavigationBarEnable() && mBarParams.getNavigationBarWithKitkatEnable()) {
             if (mBarParams.getNavigationStatusObserver() == null && mBarParams.getNavigationBarView() != null) {
                 mBarParams.setNavigationStatusObserver(new ContentObserver(new Handler()) {
@@ -351,15 +341,4 @@ public class CommonStatusBar {
             viewGroup.removeView(mBarParams.getStatusBarView());
         mDecorView.addView(mBarParams.getStatusBarView());
     }
-
-    public void destroy() {
-        if (mBarParams.getKeyboardPatch() != null) {
-            mBarParams.getKeyboardPatch().disable();  //取消监听
-            mBarParams.setKeyboardPatch(null);
-        }
-        if (mWindow != null) {
-            mWindow = null;
-        }
-    }
-
 }

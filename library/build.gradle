@@ -1,8 +1,16 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-
-
+apply plugin: 'com.novoda.bintray-release'
+publish {
+    repoName = 'common'//远程仓库名字,不指明，默认是上传到maven
+    userOrg = 'zhx'//bintray.com用户名
+    groupId = 'org.zhx.common'//jcenter上的路径,bintray上创建Package时填写的Version control项
+    artifactId = 'commonStatuBar'//项目名称，bintray上创建Package时填写的Name项
+    publishVersion = '1.0.0'//版本号
+    desc = 'easy android statuBar'//描述，不重要
+    website = 'https://github.com/zhoulinxue/commonStatuBar.git'//网站，
+}
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -23,9 +31,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    lintOptions {
+        abortOnError false
+    }
 
 }
-
+tasks.withType(Javadoc) {
+    options.addStringOption("Xdoclint:none", "-quiet")
+    options.addStringOption("encoding","UTF-8")
+}
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
