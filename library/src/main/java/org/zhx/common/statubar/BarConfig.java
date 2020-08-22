@@ -1,7 +1,4 @@
 package org.zhx.common.statubar;
-
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
@@ -43,7 +40,6 @@ public class BarConfig {
         mHasNavigationBar = (mNavigationBarHeight > 0);
     }
 
-    @TargetApi(14)
     private int getActionBarHeight(Context context) {
         int result = 0;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
@@ -53,8 +49,6 @@ public class BarConfig {
         }
         return result;
     }
-
-    @TargetApi(14)
     private int getNavigationBarHeight(Context context) {
         Resources res = context.getResources();
         int result = 0;
@@ -72,7 +66,6 @@ public class BarConfig {
         return result;
     }
 
-    @TargetApi(14)
     private int getNavigationBarWidth(Context context) {
         Resources res = context.getResources();
         int result = 0;
@@ -84,7 +77,6 @@ public class BarConfig {
         return result;
     }
 
-    @TargetApi(14)
     private static boolean hasNavBar(Activity activity) {
         WindowManager windowManager = activity.getWindowManager();
         Display d = windowManager.getDefaultDisplay();
@@ -120,7 +112,6 @@ public class BarConfig {
         return result;
     }
 
-    @SuppressLint("NewApi")
     private float getSmallestWidthDp(Activity activity) {
         DisplayMetrics metrics = new DisplayMetrics();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {

@@ -1,7 +1,6 @@
-package com.zhx.common.common.statubar
+package org.zhx.common.statubar
 
 import android.app.Activity
-import org.zhx.common.statubar.CommonStatusBar
 
 class BarFactory {
     companion object staticFun {

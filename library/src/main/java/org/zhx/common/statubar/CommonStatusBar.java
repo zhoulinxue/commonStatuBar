@@ -6,8 +6,6 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Handler;
 import android.provider.Settings;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +15,6 @@ import android.widget.FrameLayout;
 
 import androidx.annotation.RequiresApi;
 import androidx.core.graphics.ColorUtils;
-
-import com.zhx.common.common.statubar.BarFactory;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
