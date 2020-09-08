@@ -18,9 +18,6 @@ import androidx.core.graphics.ColorUtils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class CommonStatusBar {
     private Activity mActivity;
@@ -33,9 +30,6 @@ public class CommonStatusBar {
     private Window mWindow;
     private ViewGroup mDecorView;
     private ViewGroup mContentView;
-
-    private String barTag;
-
     public CommonStatusBar(Activity mActivity) {
         this.mActivity = mActivity;
         initCommonParameter(mActivity.getWindow());
@@ -55,7 +49,7 @@ public class CommonStatusBar {
     }
 
     public static CommonStatusBar acticity(Activity activity) {
-        return BarFactory.staticFun.createStatusBar(activity);
+        return BarFactory.createStatusBar(activity);
     }
 
     /**
@@ -233,7 +227,7 @@ public class CommonStatusBar {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private int initBarAboveLOLLIPOP(int uiFlags) {
         uiFlags |= View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN;  //Activity全屏显示，但状态栏不会被隐藏覆盖，状态栏依然可见，Activity顶端布局部分会被状态栏遮住。
-        if (mBarParams.getFullScreen() && mBarParams.getNavigationBarEnable()) {
+        if (mBarParams.isFullScreen() && mBarParams.getNavigationBarEnable()) {
             uiFlags |= View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION; //Activity全屏显示，但导航栏不会被隐藏覆盖，导航栏依然可见，Activity底部布局部分会被导航栏遮住。
         }
         mWindow.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -241,7 +235,7 @@ public class CommonStatusBar {
             mWindow.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
         mWindow.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);  //需要设置这个才能设置状态栏颜色
-        if (mBarParams.getStatusBarFlag())
+        if (mBarParams.isStatusBarFlag())
             mWindow.setStatusBarColor(ColorUtils.blendARGB(mBarParams.getStatusBarColor(),
                     mBarParams.getStatusBarColorTransform(), mBarParams.getStatusBarAlpha()));  //设置状态栏颜色
         else
@@ -297,7 +291,7 @@ public class CommonStatusBar {
         }
         mBarParams.getNavigationBarView().setLayoutParams(params);
         if (mBarParams.getNavigationBarEnable() && mBarParams.getNavigationBarWithKitkatEnable()) {
-            if (!mBarParams.getFullScreen() && (mBarParams.getNavigationBarColorTransform() == Color.TRANSPARENT)) {
+            if (!mBarParams.isFullScreen() && (mBarParams.getNavigationBarColorTransform() == Color.TRANSPARENT)) {
                 mBarParams.getNavigationBarView().setBackgroundColor(ColorUtils.blendARGB(mBarParams.getNavigationBarColor(),
                         Color.BLACK, mBarParams.getNavigationBarAlpha()));
             } else {
@@ -325,7 +319,7 @@ public class CommonStatusBar {
                 mConfig.getStatusBarHeight());
         params.gravity = Gravity.TOP;
         mBarParams.getStatusBarView().setLayoutParams(params);
-        if (mBarParams.getStatusBarFlag())
+        if (mBarParams.isStatusBarFlag())
             mBarParams.getStatusBarView().setBackgroundColor(ColorUtils.blendARGB(mBarParams.getStatusBarColor(),
                     mBarParams.getStatusBarColorTransform(), mBarParams.getStatusBarAlpha()));
         else

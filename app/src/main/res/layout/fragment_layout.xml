@@ -10,4 +10,9 @@
         android:gravity="center"
         android:text="Hello World!"
         android:textColor="@android:color/white" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>

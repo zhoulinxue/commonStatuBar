@@ -149,11 +149,11 @@ public class InputHelper {
 
             if (mChildView != null) {
                 diff = mContentView.getHeight() - r.bottom;
-                if (mBarParams.getFullScreen())
+                if (mBarParams.isFullScreen())
                     keyboardHeight = diff - navigationBarHeight;
                 else
                     keyboardHeight = diff;
-                if (mBarParams.getFullScreen() && diff == navigationBarHeight) {
+                if (mBarParams.isFullScreen() && diff == navigationBarHeight) {
                     diff -= navigationBarHeight;
                 }
                 if (keyboardHeight != keyboardHeightPrevious) {
@@ -172,12 +172,12 @@ public class InputHelper {
                     if (Build.VERSION.SDK_INT == Build.VERSION_CODES.KITKAT || OSUtils.isEMUI3_1()) {
                         keyboardHeight = diff - navigationBarHeight;
                     } else {
-                        if (!mBarParams.getFullScreen())
+                        if (!mBarParams.isFullScreen())
                             keyboardHeight = diff;
                         else
                             keyboardHeight = diff - navigationBarHeight;
                     }
-                    if (mBarParams.getFullScreen() && diff == navigationBarHeight)
+                    if (mBarParams.isFullScreen() && diff == navigationBarHeight)
                         diff -= navigationBarHeight;
                 } else
                     keyboardHeight = diff;

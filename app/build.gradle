@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.zhx.commonapi.commonStatubar.demo"
-        minSdkVersion 29
+        minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -36,7 +36,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation project(path: ':library')
 
-//    implementation 'org.zhx.common:commonStatuBar:1.0.0'
+//    implementation 'org.zhx.common:commonStatuBar:1.0.1'
 
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.42'
     implementation'androidx.recyclerview:recyclerview:1.0.0'
